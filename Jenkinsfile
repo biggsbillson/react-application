@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    tools{
+    tools {
         maven 'M2_HOME'
     }
     environment {
@@ -34,8 +34,8 @@ pipeline {
             }
         }
         stage('Deploy image') {
-            steps{
-                script{ 
+            steps {
+                script { 
                     docker.withRegistry("https://"+registry,"ecr:us-east-1:"+registryCredential) {
                         dockerImage.push()
                     }

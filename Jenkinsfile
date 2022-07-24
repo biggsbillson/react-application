@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    tools{
+    tools {
         maven 'M2_HOME'
     }
     environment {
@@ -11,12 +11,14 @@ pipeline {
     stages {
         stage('Checkout'){
             steps{
-                git branch: 'main', url: 'https://github.com/biggsbillson/react-application.git'
+                git branch: 'main', url: 'https://github.com/biggsbillson/create-react-app1.git'
             }
         }
         stage('Code Build') {
             steps {
-                sh 'mvn clean package'
+                sh 'mvn clean'
+                sh 'mvn install'
+                sh 'mvn package'
             }
         }
         stage('Test') {
@@ -32,8 +34,8 @@ pipeline {
             }
         }
         stage('Deploy image') {
-            steps{
-                script{ 
+            steps {
+                script { 
                     docker.withRegistry("https://"+registry,"ecr:us-east-1:"+registryCredential) {
                         dockerImage.push()
                     }

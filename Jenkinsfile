@@ -14,13 +14,13 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/biggsbillson/react-application.git'
             }
         }
-        stage('Code Build') {
-            steps {
-                sh 'mvn clean'
-                sh 'mvn install'
-                sh 'mvn package'
-            }
-        }
+//         stage('Code Build') {
+//             steps {
+//                 sh 'mvn clean'
+//                 sh 'mvn install'
+//                 sh 'mvn package'
+//             }
+//         }
         stage('Test') {
             steps {
                 sh 'mvn test'
